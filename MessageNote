@@ -1,0 +1,52 @@
+Message Object
+
+Message Type
+Message Sender
+Message Payload
+
+
+enum class MessageType
+{
+  MSG_UNKNOWN = 0,
+  MSG_KEY_UP,
+  MSG_KEY_DOWN,
+  MSG_MOUSE_MOVED,
+  MSG_COLLISION,
+  MSG_OBJECT_DESTROYED,
+
+  numOfMessageTypes,
+  // etc
+}
+
+
+Message Payload
+- Message subclasses work much better
+class Message {
+public:
+MessageType m_Type;
+};
+
+class KeyMessage : public Message {
+public:
+KeyCode m_KeyCode;
+};
+
+class MouseMessage : public Message {
+public:
+vec2 m_Position;
+};
+
+
+Message Dispatch
+- Objects that handle messages can have a simple HandleMessage method
+virtual void HandleMessage(const Message& msg)
+{
+  switch (msg.m_Type) {
+  case MSG_KEY_DOWN:
+  (
+  const KeyMessage& key_msg = static_cast<const KeyMessage&>(msg);
+  // handle key message here
+  break;
+  )
+  }
+}
