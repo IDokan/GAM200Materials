@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Singleton">
+      <UniqueIdentifier>{5265b62b-f8af-4b44-af3c-b6856cc6308b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stratege">
+      <UniqueIdentifier>{2fb7f08a-c7ff-4ce8-ba44-37a5405e928f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Observer">
+      <UniqueIdentifier>{74398ffd-fda5-4340-836c-d18553b21a64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{05630bc8-7e67-47a9-89ea-b140dd2e264e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton_main.cpp">
+      <Filter>Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Strategy_main.cpp">
+      <Filter>Stratege</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer_main.cpp">
+      <Filter>Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_main.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Singleton.hpp">
+      <Filter>Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategy.hpp">
+      <Filter>Stratege</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.hpp">
+      <Filter>Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentInterface.hpp">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.hpp">
+      <Filter>Component</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
