@@ -15,16 +15,16 @@ private:
 	std::vector<Component*> components;
 };
 
-class ProSexer : public Component
+class ProCouple : public Component
 {
 public:
-	ProSexer(std::string name_) :
+	ProCouple(std::string name_) :
 		name(name_)
 	{}
 
 	virtual void update()
 	{
-		std::cout << name << " ProSexer" << std::endl;
+		std::cout << name << " ProCouple" << std::endl;
 	}
 
 private:
