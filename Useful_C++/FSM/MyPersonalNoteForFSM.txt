@@ -1,0 +1,58 @@
+1. Make a state transition table
+	It is good mechanism for organizing states and affecting state transitions.
+	Description :
+		The table can be queried by an agent at regular intervals, enabling it to make any necessary state transitions based on the stimulus it receives from the game environment.
+		Each state can be modeled as a separate object or function existing external to the agent, providing a clean and flexible architecture.
+
+
+	Example Table :
+		Current State		Condition							State Transition
+		Runaway				Safe								Patrol
+		Attack				WeakerThanEnemy						RunAway
+		Patrol				Threatened && StrongerThanEnemy		Attack
+		Patrol				Threatened && WeakerThanEnemy		RunAway
+
+
+2. List states
+	It seems good to describe states followed by a description of the actions and state transitions that occur within those states.
+
+		Example:
+			EnterMinAndDigForNugget:
+				If the miner is not located at the gold mine, he changes location.
+				If already at the gold mine, he digs for nuggets of gold.
+				When his pockets are full, Bob changes state to *VisitBankAndDepositGold*, and if while digging he finds himself thirsty, he will stop and change state to QuenchThirst.
+			.... more example can be found in the book *Programming Gama Ai By Example*.
+	However, sometimes it's hard to follow the flow of the state logic from reading a text description like this, so it's often helpful to pick up pen and paper and draw a state transition diagram for your game agents.
+
+	Rule in the book:
+		The bubbles represent the individual states and the lines between them the available transitions.
+
+
+3. Should each concrete state is implemented as a singleton object?
+	The book encourage it to makes the design more efficient because they remove the need to allocate and deallocate memory every time a state change is made.
+	Professor Kevin said that it is not inappropriate place to use singleton pattern.
+	Furthrmore, he said that there is a bunch of version of FSM. Do not need to persist on its description, which means the architecture is up to me.
+	
+	My result is..
+		I'm going to think about it again later to find mine FSM.
+
+
+4. Making the state base class reusable
+	As the design stands, it's necessary to create a separate *State* base class for each character type to derive its states from.
+	Instread, let's make it resuable by turning t into a class template.
+
+	Actually, make state class templated class is really good but not my idea.
+	I need more effort to easily pop a nice way with template to deal with problems.
+
+5. Global States & State Blip
+	Sometimes the player do something sudden things and back to job what he did before sudden things.
+	For example, work -> urination -> work | tweet -> urination -> tweet
+	It is reffered as State Blip phenomenon and we need global states to back to previous state.
+
+	State* currentState;
+	State* previousState;
+	State* globalState;
+
+	However, it seems dirty and we need time to tidy up a little...
+
+	I think the solution is a *State Machine* class
