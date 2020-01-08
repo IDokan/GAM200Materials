@@ -1,0 +1,3 @@
+https://en.wikipedia.org/wiki/Delegate_(CLI)#C#_code_example
+This is an wiki page that describe what the delegate is.
+

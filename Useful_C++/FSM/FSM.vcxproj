@@ -128,11 +128,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnhancedState.h" />
+    <ClInclude Include="MessageSystem\MessageDispatcher.h" />
+    <ClInclude Include="MessageSystem\Telegram.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ReusableState.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="DerivedStates.h" />
+    <ClInclude Include="StateMachine.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Delegate.txt" />
     <Text Include="MyPersonalNoteForFSM.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

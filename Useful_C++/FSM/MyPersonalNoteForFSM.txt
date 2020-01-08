@@ -45,6 +45,12 @@
 	I need more effort to easily pop a nice way with template to deal with problems.
 
 5. Global States & State Blip
+
+	(Global State)
+	you will end up with code that is duplicated in every state.
+		-> Global State
+
+	(State Blip)
 	Sometimes the player do something sudden things and back to job what he did before sudden things.
 	For example, work -> urination -> work | tweet -> urination -> tweet
 	It is reffered as State Blip phenomenon and we need global states to back to previous state.
@@ -56,3 +62,39 @@
 	However, it seems dirty and we need time to tidy up a little...
 
 	I think the solution is a *State Machine* class
+
+6. The advantage when we add message system to our FSM.
+
+	These situations become easy to deal with
+		A wizard throws a fireball at an orc.
+		A football player makes a pass to a teammate.
+		A grunt is injured.
+		A character strikes a match to help light its way along a gloomycorridor.
+
+7. The telegram structures
+
+	What informations need to be dispatched..
+		Who sent it								->					int Sender
+		Who the recipient is					->					int Receiver
+		What the actual message is		->					int Msg
+		A time stamp								->					double DispatchTime
+		etc..											->					void* ExtraInfo
+
+	The *Telegram* structure should be reusable.
+	That's the reason why ExtraInfo exist,
+		For example, if a platoon leader sends the message Msg_MoveToPosition to all his men,
+		ExtraInfo can be used to store the coordinates of that position.
+			(		ExtraInfo = reinterpret_cast<void*>(destinationCoordinate);		)
+
+8. Message Dispatch & Management
+	A class named MessageDispatcher is a easy way to deal with.
+	
+	There are methods such as
+		void RegisterEntity(BaseGameEntity*)
+		BaseGameEntity* GetEntityFromId(int) const
+
+	They are implemented for faster access.
+	It is the fact that enumerated value is faster to calculate.
+	However, since my JamJam Engine does not labeled ID value to all of objects, there are a bunch of extra tasks to apply it.
+	I need a discussion about it.
+	(Maybe extra reference about Message System help to determine the architecture of Message Dispatcher)
