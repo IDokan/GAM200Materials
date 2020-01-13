@@ -16,6 +16,9 @@
     <Filter Include="Header Files\MessageSystem">
       <UniqueIdentifier>{80e67cf1-8f91-427c-a630-26670cdfcd90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\MessageSystem">
+      <UniqueIdentifier>{59348b0e-a3fa-4e6a-8e05-b2316b033119}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FSM.cpp">
@@ -23,6 +26,9 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageSystem\MessageDispatcher.cpp">
+      <Filter>Source Files\MessageSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,8 +53,20 @@
     <ClInclude Include="MessageSystem\Telegram.h">
       <Filter>Header Files\MessageSystem</Filter>
     </ClInclude>
+    <ClInclude Include="MessageSystem\EntityManager.h">
+      <Filter>Header Files\MessageSystem</Filter>
+    </ClInclude>
     <ClInclude Include="MessageSystem\MessageDispatcher.h">
       <Filter>Header Files\MessageSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageSystem\MessageCapableEntity.h">
+      <Filter>Header Files\MessageSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageCapableState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageCapableStateMachine.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

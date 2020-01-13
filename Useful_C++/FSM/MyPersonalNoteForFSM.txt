@@ -63,6 +63,10 @@
 
 	I think the solution is a *State Machine* class
 
+-------------------------------------------------------------------------------------------------------------------------------------------
+Finite State Machine With Message System
+-------------------------------------------------------------------------------------------------------------------------------------------
+
 6. The advantage when we add message system to our FSM.
 
 	These situations become easy to deal with
@@ -89,12 +93,30 @@
 8. Message Dispatch & Management
 	A class named MessageDispatcher is a easy way to deal with.
 	
-	There are methods such as
-		void RegisterEntity(BaseGameEntity*)
-		BaseGameEntity* GetEntityFromId(int) const
+	1. Entity Manager
 
-	They are implemented for faster access.
-	It is the fact that enumerated value is faster to calculate.
-	However, since my JamJam Engine does not labeled ID value to all of objects, there are a bunch of extra tasks to apply it.
-	I need a discussion about it.
-	(Maybe extra reference about Message System help to determine the architecture of Message Dispatcher)
+		There are methods such as
+			void RegisterEntity(BaseGameEntity*)
+			BaseGameEntity* GetEntityFromId(int) const
+
+		They are implemented for faster access.
+		It is the fact that enumerated value is faster to calculate.
+		However, since my JamJam Engine does not labeled ID value to all of objects, there are a bunch of extra tasks to apply it.
+		I need a discussion about it.
+		(Maybe extra reference about Message System help to determine the architecture of Message Dispatcher)
+
+	2. Message Dispatcher
+		It manage all messages
+			When they routed, message dispatcher manage it.
+
+
+	Changes..
+		In order to support message by State Machine, a bunch of files need to support a few of extra functionalities.
+
+		The ancestor class of game entity have to support the function when message received.
+			For instance, 
+				virtual bool HandleMessage(const Telegram& msg) = 0;
+
+		The abstract State class have to declare OnMessage function as a pure virtual function
+		The StateMachine also have it.
+			In example of StateMachine, there is a hierachy between global state and current state.

@@ -124,10 +124,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FSM.cpp" />
+    <ClCompile Include="MessageSystem\MessageDispatcher.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnhancedState.h" />
+    <ClInclude Include="MessageCapableState.h" />
+    <ClInclude Include="MessageCapableStateMachine.h" />
+    <ClInclude Include="MessageSystem\EntityManager.h" />
+    <ClInclude Include="MessageSystem\MessageCapableEntity.h" />
     <ClInclude Include="MessageSystem\MessageDispatcher.h" />
     <ClInclude Include="MessageSystem\Telegram.h" />
     <ClInclude Include="Player.h" />

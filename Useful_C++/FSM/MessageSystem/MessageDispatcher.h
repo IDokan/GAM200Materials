@@ -12,60 +12,43 @@ Creation Date: 01.08.2020
 		It manages dispatching message
 ******************************************************************************/
 #pragma once
-#include <map>
+#include <set>
 
-class BaseGameEntity;
+class Telegram;
+class Entity;
 
-class EntityManager
+class MessageDispatcher
 {
 public:
-	static EntityManager* Instance();
+	// this class is a singleton
+	static MessageDispatcher* Instance();
 
-	/*	Example of usage of RegisterEntity()
-		When an entity is created it is registered with the entity manager like so:
+	// send a message to another agent.
+	void DispatchMessage(
+		double delay, 
+		int sender,
+		int receiver,
+		int msg,
+		void* ExtraInfo
+	);
 
-	// ent_Miner_Bob is declared in "MessageTypes.h"
-	// Miner(int ID);
-	Miner* Bob = new Miner(ent_Miner_Bob); // enumerated ID
-	EntityMgr->RegisterEntity(Bob);
-	*/	
-
-	// this method stores a pointer to the entity in the std::vector
-	// m_Entities at the index position indicated by the entity's ID
-	// (makes for faster access)
-	void RegisterEntity(BaseGameEntity* NewEntity);
-
-
-	/*	Example of usage of GetEntityFromId()
-		A client can now request a pointer to a specific entity by passing its ID
-		to the method EntityManager::GetEntityFromID in this way:
-
-	// ent_Miner_Bob is declared in "MessageTypes.h"
-	Entity* pBob = EntityMgr->GetEntityFromID(ent_Miner_Bob);
-	*/
-	// returns a pointer to the entity with the ID given as a parameter
-	BaseGameEntity* GetEntityFromId(int id) const;
-
-	// this method removes the entity from the list
-	void RemoveEntity(BaseGameEntity* pEntity);
+	// Send out any delayed messages. 
+	// This method is called each time through the main game loop.
+	void DispatchDelayedMessages();
 
 private:
-	// to save the ol' fingers
-	using EntityMap = std::map<int, BaseGameEntity>;
+	// a std::set is used a sthe container for the delayed messages
+	// because of the benefit of automatic sorting and avoidance of duplicates.
+	// Messages are sorted by their dispatch time.
+	std::set <Telegram> PriorityQ;
 
+	// this method is utilized by DispatchMessage or DispatchDelayedMessages.
+	// This method calls the message handling member function of the receiving
+	// entity, pReceiver, with the newly created telegram
+	void Discharge(Entity* pReciever, const Telegram& msg);
 
-private:
-	// to facilitate quick lookup the entites are stored in a std::map,
-	// in which pointers to entities are cross-referenced by their identifying number
-	EntityMap m_EntityMap;
-
-	// private ctor to implement this as a singleton class
-	EntityManager() {}
-
-	// copy ctor and assignment should be private
-	EntityManager(const EntityManager&);
-	EntityManager& operator=(const EntityManager&);
+	MessageDispatcher() {}
 };
 
-// provide easy access to the instance of the EntityManager
-#define EntityMgr EntityManager::Instance()
+// to make life easier...
+#define Dispatch MessageDispatcher::Instance()
